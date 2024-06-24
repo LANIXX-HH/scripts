@@ -37,5 +37,12 @@ volumes:
     driver: local
 EOF
 
+cat << EOF > .env
+APP_ENV=prod
+APP_URL=http://localhost:8080
+STOREFRONT_PROXY_URL=http://localhost:8080
+SHOP_DOMAIN=localhost
+EOF
+
 docker compose up -d
 docker compose exec -it shopware bash -c "php bin/console sales-channel:update:domain localhost:8080"
